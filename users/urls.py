@@ -2,7 +2,7 @@ from django.urls import path, include
 from django.views.generic import TemplateView
 
 from users.views import Register, EmailVerify, MyLoginView
-app_name = "users"
+# app_name = "users"
 
 urlpatterns = [
 

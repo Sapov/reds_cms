@@ -10,6 +10,7 @@ from django.contrib.auth.tokens import default_token_generator as \
 
 from users.models import User
 
+
 def send_email_for_verify(request, user):
     current_site = get_current_site(request)
     context = {
@@ -27,5 +28,4 @@ def send_email_for_verify(request, user):
         message,
         to=[user.email],
     )
-    User.objects.create(user=user)
     email.send()
