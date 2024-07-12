@@ -29,5 +29,5 @@ urlpatterns = [
     ),
 
     path('register/', Register.as_view(), name='register'),
-    path('dashboard/', dashboard, name = 'dashboard'),
+    path('dashboard/', dashboard, name='dashboard'),
 ]

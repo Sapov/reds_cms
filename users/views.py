@@ -64,5 +64,6 @@ class Register(View):
         }
         return render(request, self.template_name, context)
 
+
 def dashboard(request):
     return render(request, 'dashboard.html')

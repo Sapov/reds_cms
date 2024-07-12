@@ -5,8 +5,8 @@
     <title>Title</title>
 </head>
 <body>
+{{ request.user.first_name|default:request.user.username }} | Role: {{user.role}}
 
-<h5{{user.name}}</h5>
 dashboarddashboard
 </body>
 </html>
