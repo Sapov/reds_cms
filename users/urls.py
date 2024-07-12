@@ -1,7 +1,8 @@
 from django.urls import path, include
 from django.views.generic import TemplateView
 
-from users.views import Register, EmailVerify, MyLoginView
+from users.views import Register, EmailVerify, MyLoginView, dashboard
+
 # app_name = "users"
 
 urlpatterns = [
@@ -28,4 +29,5 @@ urlpatterns = [
     ),
 
     path('register/', Register.as_view(), name='register'),
+    path('dashboard/', dashboard, name = 'dashboard'),
 ]
