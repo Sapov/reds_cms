@@ -7,7 +7,7 @@ from users.views import Register, EmailVerify, MyLoginView, dashboard
 
 urlpatterns = [
 
-    path('login/', MyLoginView.as_view(), name='login'),
+    # path('login/', MyLoginView.as_view(), name='login'),
     path('', include('django.contrib.auth.urls')),
 
     path(
@@ -29,5 +29,5 @@ urlpatterns = [
     ),
 
     path('register/', Register.as_view(), name='register'),
-    path('dashboard/', dashboard, name='dashboard'),
+
 ]

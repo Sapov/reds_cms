@@ -1,4 +1,5 @@
 from django.contrib.auth import authenticate, login, get_user_model
+from django.contrib.auth.decorators import login_required
 from django.contrib.auth.views import LoginView
 from django.core.exceptions import ValidationError
 from django.utils.http import urlsafe_base64_decode
@@ -65,5 +66,6 @@ class Register(View):
         return render(request, self.template_name, context)
 
 
+@login_required
 def dashboard(request):
     return render(request, 'dashboard.html')
