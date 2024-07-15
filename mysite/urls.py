@@ -22,6 +22,8 @@ from users.views import dashboard
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('users/', include('users.urls')),
+    path('files/', include('files.urls')),
+    path('orders/', include('orders.urls')),
     path('', dashboard, name='dashboard'),
 
 ]
