@@ -1,0 +1,8 @@
+version: '3.8'
+services:
+  django_project:
+      build:
+        dockerfile: Dockerfile
+        context: .
+      image: django_docker:latest
+      container_name: django_docker
