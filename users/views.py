@@ -13,8 +13,8 @@ from users.utils import send_email_for_verify
 User = get_user_model()
 
 
-class MyLoginView(LoginView):
-    form_class = AuthenticationForm
+# class MyLoginView(LoginView):
+#     form_class = AuthenticationForm
 
 
 class EmailVerify(View):

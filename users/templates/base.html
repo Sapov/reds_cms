@@ -89,9 +89,6 @@
                     data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Мой профиль:</h6>
-                        <a class="collapse-item" href="{% url 'account:edit_profile' %}">Изменить</a>
-                        <a class="collapse-item" href="{% url 'account:delivery_list' %}">Адреса доставки</a>
-                        <a class="collapse-item" href="{% url 'account:list_organisation' %}">Организации</a>
                         <a class="collapse-item" href="{% url 'password_change' %}">Сменить пароль</a>
                     </div>
                 </div>
@@ -115,8 +112,6 @@
 <!--                <div id="collapsePages" class="collapse" aria-labelledby="headingPages"-->
 <!--                    data-parent="#accordionSidebar">-->
 <!--                    <div class="bg-white py-2 collapse-inner rounded">-->
-<!--                        <h6 class="collapse-header">Управление доставкой:</h6>-->
-<!--                        <a class="collapse-item" href="{% url 'account:delivery_list' %}">Адреса</a>-->
 <!--                        <a class="collapse-item" href="#">Добавить адрес</a>-->
 <!--                        <a class="collapse-item" href="#">Удалить адрес</a>-->
 <!--                    </div>-->
@@ -133,7 +128,7 @@
 
 
             <li class="nav-item">
-                <a class="nav-link" href="{% url 'files:price' %}">
+                <a class="nav-link" href="#">
                     <i class="fas fa-fw fa-table"></i>
                     <span>Прайс-лист</span></a>
             </li>
@@ -217,7 +212,7 @@
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
                                 aria-labelledby="userDropdown">
-                                <a class="dropdown-item" href="{% url 'account:edit_profile' %}">
+                                <a class="dropdown-item" href="#">
                                     <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                                     Профиль
                                 </a>
@@ -258,7 +253,7 @@
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
                     <h1 class="h3 mb-0 text-gray-800"> </h1>
 
-             <a href="{% url 'account:dashboard' %}" class="d-none d-sm-inline-block btn btn-success shadow-sm"><i
+             <a href="{% url 'dashboard' %}" class="d-none d-sm-inline-block btn btn-success shadow-sm"><i
             class="fas fa-download fa-sm text-white-50"></i> Загрузить файл</a>
  </div>
             {% block body %}

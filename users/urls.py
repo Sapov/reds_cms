@@ -1,7 +1,7 @@
 from django.urls import path, include
 from django.views.generic import TemplateView
 
-from users.views import Register, EmailVerify, MyLoginView, dashboard
+from users.views import Register, EmailVerify, dashboard
 
 # app_name = "users"
 
