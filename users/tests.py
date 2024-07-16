@@ -15,7 +15,7 @@ class LoginPageTests(TestCase):
         self.assertEqual(self.response.status_code, 200)
 
     def test_template_loginpage(self):
-        'шаблона'
+        'шаблон Логина'
         self.assertTemplateUsed(self.response, 'registration/login.html')
         self.assertContains(self.response, 'Login')
 
@@ -30,3 +30,66 @@ class LoginPageTests(TestCase):
     #     requests = HttpRequest()
     #     response = dashboard(requests)
     #     self.assertEqual(self.response.status_code, 200)
+
+
+class RegisterPageTests(TestCase):
+    def setUp(self):
+        url = reverse('register')
+        self.response = self.client.get(url)
+
+    def test_register_page(self):
+        self.assertEqual(self.response.status_code, 200)
+
+    def test_template_register(self):
+        'шаблон register'
+        self.assertTemplateUsed(self.response, 'registration/register.html')
+        self.assertContains(self.response, 'register')
+
+    def test_signup_view(self):  # new
+        "Проверяем что вызывается функция"
+        view = resolve('/users/register/')
+
+        self.assertEqual(view.func.__name__,
+                         Register.as_view().__name__)
+
+
+class ConfirmEmailPageTests(TestCase):
+    def setUp(self):
+        url = reverse('confirm_email')
+        self.response = self.client.get(url)
+
+    def test_register_page(self):
+        self.assertEqual(self.response.status_code, 200)
+
+    def test_template_register(self):
+        'шаблон confirm_email'
+        self.assertTemplateUsed(self.response, 'registration/confirm_email.html')
+        self.assertContains(self.response, 'Пожалуйста, проверьте свою почту, чтобы завершить регистрацию... ')
+
+    def test_signup_view(self):  # new
+        "Проверяем что вызывается функция"
+        view = resolve('/users/confirm_email/')
+
+        self.assertEqual(view.func.__name__,
+                         Register.as_view().__name__)
+
+
+class InvalidVerifyPageTests(TestCase):
+    def setUp(self):
+        url = reverse('invalid_verify')
+        self.response = self.client.get(url)
+
+    def test_register_page(self):
+        self.assertEqual(self.response.status_code, 200)
+
+    def test_template_register(self):
+        'шаблон invalid_verify'
+        self.assertTemplateUsed(self.response, 'registration/invalid_verify.html')
+        self.assertContains(self.response, 'Ваша ссылка не корректна, залогиньтесь снова')
+
+    def test_signup_view(self):  # new
+        "Проверяем что вызывается функция"
+        view = resolve('/users/invalid_verify/')
+
+        self.assertEqual(view.func.__name__,
+                         Register.as_view().__name__)
