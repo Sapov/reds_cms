@@ -100,3 +100,9 @@ class UserListView(LoginRequiredMixin, ListView):
     template_name = "users/user_list.html"
     model = User
     paginate_by = 5
+
+
+class UserCreateView(LoginRequiredMixin, CreateView):
+    fields = ('__all__')
+    template_name = "users/user_create.html"
+    model = User

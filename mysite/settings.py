@@ -26,7 +26,8 @@ INSTALLED_APPS = [
     'users.apps.UsersConfig',
     'files',
     'orders',
-
+    'crispy_forms',
+    "crispy_bootstrap4",
 
 ]
 
@@ -118,5 +119,7 @@ LOGIN_REDIRECT_URL = "dashboard"
 LOGIN_URL = "login"
 LOGOUT_URL = "logout"
 
+# _________________CRISPU FORM_________________
 
-
+CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap4"
+CRISPY_TEMPLATE_PACK = "bootstrap4"

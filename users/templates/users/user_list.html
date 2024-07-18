@@ -2,15 +2,14 @@
 <title>{% block title %} Пользователи: {% endblock %}</title>
 {% block body %}
 
-    <h1>Пользователи: </h1>
+<h1>Пользователи: </h1>
 
-  <a href="{% url 'account:delivery_create' %}" class="btn btn-primary btn-icon-split">
+<a href="#" class="btn btn-primary btn-icon-split">
                                         <span class="icon text-white-50">
                                             <i class="fas fa-flag"></i>
                                         </span>
-                                        <span class="text">Добавить адрес</span>
-                                    </a>
-
+    <span class="text">Добавить пользователя</span>
+</a>
 
 
 <hr>
@@ -20,33 +19,27 @@
             <thead>
             <tr>
 
-                                                    <th scope="col">№</th>
-                                                    <th scope="col">Область</th>
-                                                    <th scope="col">Город</th>
-                                                    <th scope="col">Улица</th>
-                                                    <th scope="col">Дом</th>
-                                                    <th scope="col">Имя получателя</th>
-                                                    <th scope="col">Тел. получателя</th>
-                                                    <th scope="col">Тип доставки:</th>
-                                                </tr>
-                                            </thead>
+                <th scope="col">№</th>
+                <th scope="col">Name</th>
+                <th scope="col">Имя Фамилия</th>
+                <th scope="col">Телефон</th>
+                <th scope="col">Почтовый адрес</th>
+            </tr>
+            </thead>
 
-     {% for item in object_list %}
+            {% for item in object_list %}
 
-                                            <tbody>
-                                                <tr>
-                                                    <td>{{ item.id }}</td>
-                                                    <td>{{ item.region }}</td>
-                                                    <td>{{ item.city }}</td>
-                                                    <td>{{ item.street }}</td>
-                                                    <td>{{ item.house }}</td>
-                                                    <td>{{ item.first_name }} {{ item.second_name }}</td>
-                                                    <td>{{ item.phone }}</td>
-                                                    <td>{{ item.delivery_method }}</td>
-                                                                    </tr>
-        {% endfor %}
+            <tbody>
+            <tr>
+                <td>{{ item.id }}</td>
+                <td>{{ item.username }}</td>
+                <td>{{ item.first_name }} {{ item.last_name }}</td>
+                <td>{{ item.phone_number }}</td>
+                <td>{{ item.email }}</td>
+            </tr>
+            {% endfor %}
             </tbody>
-    </table>
+        </table>
     </div>
 </div>
 
