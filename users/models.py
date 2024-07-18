@@ -16,14 +16,8 @@ class Role(models.TextChoices):
 
 class User(AbstractUser):
     phone_number = models.CharField(max_length=15, blank=True, verbose_name='Телефон')
-    role = models.CharField(
-        max_length=24, choices=Role.choices, default=Role.CUSTOMER_RETAIL
-    )
-    email = models.EmailField(
-        _("email address"),
-        unique=True,
-    )
-
+    role = models.CharField(max_length=24, choices=Role.choices, default=Role.CUSTOMER_RETAIL)
+    email = models.EmailField(_("email address"), unique=True,)
     email_verify = models.BooleanField(default=False)
 
     USERNAME_FIELD = "email"

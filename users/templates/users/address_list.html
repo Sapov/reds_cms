@@ -1,0 +1,51 @@
+{% extends 'base.html'%}
+<title>{% block title %}Адреса доставки пользователя:{% endblock %}</title>
+{% block body %}
+
+<h1>Адреса доставки пользователя:</h1>
+
+<a href="{% url 'address_create'%}" class="btn btn-primary btn-icon-split">
+                                        <span class="icon text-white-50">
+                                            <i class="fas fa-flag"></i>
+                                        </span>
+
+
+    <span class="text">Добавить адрес доставки</span>
+</a>
+
+
+<hr>
+<div class="row">
+    <div class="col-md-12">
+        <table class="table table-striped table-hover">
+            <thead>
+            <tr>
+
+                <th scope="col">№</th>
+                <th scope="col">Адрес</th>
+                <th scope="col">Имя Фамилия принимающего</th>
+                <th scope="col">Телефон</th>
+                <th scope="col">Изменить</th>
+                <th scope="col">Удалить</th>
+            </tr>
+            </thead>
+
+            {% for item in object_list %}
+
+            <tbody>
+            <tr>
+                <td>{{ item.id }}</td>
+                <td>{{ item.city }} {{ item.street }} {{ item.house}}</td>
+                <td>{{ item.first_name }} {{ item.last_name }}</td>
+                <td>{{ item.phone_number }}</td>
+                <td><a href="{% url 'user_update' item.id %}">Изменить</a></td>
+                <td><a href="{% url 'user_delete' item.id %}">Удалить</a></td>
+
+            </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+{% endblock body %}
