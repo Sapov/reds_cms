@@ -1,7 +1,7 @@
 from django.urls import path, include
 from django.views.generic import TemplateView
 
-from users.views import Register, EmailVerify, dashboard
+from users.views import Register, EmailVerify, dashboard, UserListView
 
 # app_name = "users"
 
@@ -29,5 +29,11 @@ urlpatterns = [
     ),
 
     path('register/', Register.as_view(), name='register'),
+    #----------------------------CRUD  model USERS
+    path('list_user/', UserListView.as_view(), name='list_users'),
+
+    #<td><a href="{% url 'account:delivery_update' item.id %}">Изменить</a></td>
+    #<td><a href="{% url 'account:delivery_delete' item.id %}">Удалить</a></td>
+
 
 ]

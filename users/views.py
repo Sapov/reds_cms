@@ -1,5 +1,6 @@
 from django.contrib.auth import authenticate, login, get_user_model
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.views import LoginView
 from django.core.exceptions import ValidationError
 from django.utils.http import urlsafe_base64_decode
@@ -9,6 +10,8 @@ from django.contrib.auth.tokens import default_token_generator as \
     token_generator
 from users.forms import UserCreationForm, AuthenticationForm
 from users.utils import send_email_for_verify
+from django.views.generic.edit import CreateView
+from django.views.generic.list import ListView
 
 User = get_user_model()
 
@@ -69,3 +72,31 @@ class Register(View):
 @login_required
 def dashboard(request):
     return render(request, 'dashboard.html')
+
+
+# @login_require
+# def edit_profile(request):
+#     if request.method == "POST":
+#         user_form = UserEditForm(instance=request.user, data=request.POST)
+#         profile_form = ProfileEditForm(
+#             instance=request.user.profile, data=request.POST, files=request.FILES
+#         )
+#         if user_form.is_valid() and profile_form.is_valid():
+#             user_form.save()
+#             profile_form.save()
+#         return render(request, "account/complite_edit.html")
+#     else:
+#         user_form = UserEditForm(instance=request.user)
+#         profile_form = ProfileEditForm(instance=request.user.profile)
+#     return render(
+#         request,
+#         "users/edit.html",
+#         {"user_form": user_form, "profile_form": profile_form},
+#     )
+
+
+class UserListView(LoginRequiredMixin, ListView):
+    ''' Посмотреть всех юзеров'''
+    template_name = "users/user_list.html"
+    model = User
+    paginate_by = 5
