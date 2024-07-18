@@ -30,4 +30,4 @@ class User(AbstractUser):
     REQUIRED_FIELDS = ["username"]
 
     def get_absolute_url(self):
-        return reverse('list_users')
+        return reverse('user_list')

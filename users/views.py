@@ -3,6 +3,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.views import LoginView
 from django.core.exceptions import ValidationError
+from django.urls import reverse_lazy
 from django.utils.http import urlsafe_base64_decode
 from django.views import View
 from django.shortcuts import render, redirect
@@ -10,7 +11,7 @@ from django.contrib.auth.tokens import default_token_generator as \
     token_generator
 from users.forms import UserCreationForm, AuthenticationForm
 from users.utils import send_email_for_verify
-from django.views.generic.edit import CreateView, UpdateView
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.views.generic.list import ListView
 
 User = get_user_model()
@@ -100,14 +101,14 @@ class UserListView(LoginRequiredMixin, ListView):
     template_name = "users/user_list.html"
     model = User
     # paginate_by = 5
+    # пописать пагинацию в user_list.html
 
 
 class UserCreateView(LoginRequiredMixin, CreateView):
     '''Добавление нового пользователя'''
-    fields = ('__all__')
+    fields = ['email', 'password', 'username', 'first_name', 'last_name', 'phone_number']
     template_name = "users/user_create.html"
     model = User
-    # success_url = '/'
 
 
 class UserUpdateView(UpdateView):
@@ -115,5 +116,10 @@ class UserUpdateView(UpdateView):
     model = User
     # fields = ['username', 'phone_number', 'first_name', 'last_name', 'email', 'is_active', 'email_verify']
     fields = ('__all__')
-
     template_name_suffix = '_update_form'
+
+
+class UserDeleteView(LoginRequiredMixin, DeleteView):
+    ''' Удаление пользователя  '''
+    model = User
+    success_url = reverse_lazy('user_list')
