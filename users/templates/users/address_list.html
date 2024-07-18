@@ -35,9 +35,9 @@
             <tbody>
             <tr>
                 <td>{{ item.id }}</td>
-                <td>{{ item.city }} {{ item.street }} {{ item.house}}</td>
-                <td>{{ item.first_name }} {{ item.last_name }}</td>
-                <td>{{ item.phone_number }}</td>
+                <td>{{ item.city }},{{ item.street }}, д.{{ item.house}}, оф./кв{{item.flat}}</td>
+                <td>{{ item.first_name }} {{ item.second_name }}</td>
+                <td>{{ item.phone }}</td>
                 <td><a href="{% url 'address_update' item.id %}">Изменить</a></td>
                 <td><a href="{% url 'address_delete' item.id %}">Удалить</a></td>
 
