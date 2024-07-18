@@ -10,6 +10,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.tokens import default_token_generator as \
     token_generator
 from users.forms import UserCreationForm, AuthenticationForm, UserEditForm
+from users.models import DeliveryAddress
 from users.utils import send_email_for_verify
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.views.generic.list import ListView
@@ -135,3 +136,27 @@ def edit_profile(request):
     else:
         user_form = UserEditForm(instance=request.user)
     return render(request, "users/edit_profile.html", {"user_form": user_form})
+
+
+class AddressListView(LoginRequiredMixin, ListView):
+    model = DeliveryAddress
+    template_name = "users/address_list.html"
+
+
+class AddressCreateView(LoginRequiredMixin, CreateView):
+    '''Добавление нового адреса доставки для пользователя'''
+    fields = ('__all__')
+    template_name = "users/address_create.html"
+    model = DeliveryAddress
+
+
+class AddressUpdateView(LoginRequiredMixin, UpdateView):
+    '''Редактирование адреса доставки для пользователя'''
+    model = DeliveryAddress
+    fields = ('__all__')
+
+
+class AddressDeleteView(LoginRequiredMixin, DeleteView):
+    '''Удаление адреса доставки для пользователя'''
+    model = DeliveryAddress
+    success_url = reverse_lazy('address_list')  # Переходим на страницу списка адресов
