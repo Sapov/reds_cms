@@ -51,7 +51,6 @@ class NewVisitorTests(unittest.TestCase):
     #     self.browser.find_element(By.CSS_SELECTOR, "[class='text']").click()
     #     time.sleep(2)
 
-
     def tearDown(self):
         self.browser.quit()
 
