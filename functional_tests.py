@@ -40,8 +40,8 @@ class NewVisitorTests(unittest.TestCase):
         self.browser.find_element(By.CSS_SELECTOR, "[name='second_name']").send_keys("Борисович")
         self.browser.find_element(By.CSS_SELECTOR, "[name='phone']").send_keys("+7984455175")
         select = Select(self.browser.find_element(By.CSS_SELECTOR, "[name='delivery_method']"))
-        select.select_by_value('1')
-        time.sleep(3)
+        select.select_by_value('YANDEX_DELIVERY')
+        time.sleep(5)
         self.browser.find_element(By.CSS_SELECTOR, "[type='submit']").click()
         time.sleep(3)
 
