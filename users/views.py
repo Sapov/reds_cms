@@ -154,3 +154,9 @@ class AddressUpdateView(LoginRequiredMixin, UpdateView):
     '''Редактирование адреса доставки для пользователя'''
     model = DeliveryAddress
     fields = ('__all__')
+
+
+class AddressDeleteView(LoginRequiredMixin, DeleteView):
+    '''Удаление адреса доставки для пользователя'''
+    model = DeliveryAddress
+    success_url = reverse_lazy('address_list')  # Переходим на страницу списка адресов
