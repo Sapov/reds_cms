@@ -30,6 +30,9 @@ class User(AbstractUser):
 class Delivery(models.Model):
     type_delivery = models.CharField(max_length=200, verbose_name="Тип доставки", default=2)
 
+    def __str__(self):
+        return self.type_delivery
+
     class Meta:
         verbose_name_plural = "Типы доставки"
         verbose_name = "Тип Доставки"

@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block title %}Редактировать адрес пользователя {% endblock %}
+{% load crispy_forms_tags %}
+
+{% block body %}
+
+<h3>Редактировать адрес пользователя</h3>
+<form method="post">
+    {% csrf_token %}
+    {{ form|crispy }}
+
+
+    <input type="submit" value="Изменить">
+</form>
+{% endblock %}

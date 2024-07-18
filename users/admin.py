@@ -3,7 +3,8 @@ from django.contrib.auth import get_user_model
 from django.contrib.auth.admin import UserAdmin
 from users.forms import UserCreationForm
 
-from .models import User
+from .models import User, DeliveryAddress, Delivery
+
 #
 # User = get_user_model()
 #
@@ -22,3 +23,5 @@ from .models import User
 
 # admin.site.register(User)
 admin.site.register(User)
+admin.site.register(DeliveryAddress)
+admin.site.register(Delivery)
