@@ -22,8 +22,8 @@ urlpatterns = [
     path('edit_profile', edit_profile, name='edit_profile'),
     # -----------------CRUD ADDRESS DELIVERY---------------------
     path('list_address/', AddressListView.as_view(), name='address_list'),
-    path('create_address/', AddressCreateView.as_view(), name='create_address'),
-    path('update_address/<pk>', AddressUpdateView.as_view(), name='update_address'),
-    path('delete_address/<pk>', AddressDeleteView.as_view(), name='delete_address'),
+    path('create_address/', AddressCreateView.as_view(), name='address_create'),
+    path('update_address/<pk>', AddressUpdateView.as_view(), name='address_update'),
+    path('delete_address/<pk>', AddressDeleteView.as_view(), name='address_delete'),
 
 ]
