@@ -25,5 +25,8 @@ urlpatterns = [
     path('create_address/', AddressCreateView.as_view(), name='address_create'),
     path('update_address/<pk>', AddressUpdateView.as_view(), name='address_update'),
     path('delete_address/<pk>', AddressDeleteView.as_view(), name='address_delete'),
+    # ---------------------CRUD ORGANISATION---------------------
+    path('list_organization/', OrganisationListView.as_view(), name='list_organization'),
+
 
 ]
