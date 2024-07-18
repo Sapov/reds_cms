@@ -93,3 +93,24 @@ class InvalidVerifyPageTests(TestCase):
 
         self.assertEqual(view.func.__name__,
                          Register.as_view().__name__)
+
+# нужна авторизация
+# class UserListTests(TestCase):
+#     def setUp(self):
+#         url = reverse('user_list')
+#         self.response = self.client.get(url)
+#
+#     def test_login_page(self):
+#         self.assertEqual(self.response.status_code, 200)
+#
+#     def test_template_loginpage(self):
+#         'шаблон user_list'
+#         self.assertTemplateUsed(self.response, 'users/user_list.html')
+#         self.assertContains(self.response, 'Пользователи:')
+#
+#     def test_signup_view(self):  # new
+#         "Проверяем что вызывается функция"
+#         view = resolve('/users/list_user/')
+#
+#         self.assertEqual(view.func.__name__,
+#                          Register.as_view().__name__)

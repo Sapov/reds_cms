@@ -3,11 +3,9 @@ from django.views.generic import TemplateView
 
 from users.views import Register, EmailVerify, dashboard, UserListView, UserCreateView, UserUpdateView, UserDeleteView
 
-# app_name = "users"
 
 urlpatterns = [
 
-    # path('login/', MyLoginView.as_view(), name='login'),
     path('', include('django.contrib.auth.urls')),
 
     path(
@@ -36,5 +34,3 @@ urlpatterns = [
     path('user_delete/<pk>', UserDeleteView.as_view(), name='user_delete'),
 ]
 
-# <td><a href="{% url 'account:delivery_update' item.id %}">Изменить</a></td>
-# <td><a href="{% url 'account:delivery_delete' item.id %}">Удалить</a></td>
