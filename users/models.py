@@ -37,7 +37,7 @@ class Delivery(models.TextChoices):
 
 class DeliveryAddress(models.Model):
     '''Адреса доставки польлmзователя'''
-    Contractor = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, verbose_name="ЗАКАЗЧИК",
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, verbose_name="ЗАКАЗЧИК",
                                    null=True, blank=True)
     region = models.CharField(max_length=100, verbose_name="Область", null=True, blank=True)
     city = models.CharField(max_length=200, verbose_name="Город", null=True, blank=True)
@@ -64,7 +64,7 @@ class DeliveryAddress(models.Model):
 
 
 class Organisation(models.Model):
-    Contractor = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, verbose_name="ЗАКАЗЧИК",
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, verbose_name="ЗАКАЗЧИК",
                                    default=1,
                                    )
     name_ul = models.CharField(

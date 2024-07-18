@@ -123,7 +123,7 @@ class AddressListView(LoginRequiredMixin, ListView):
 
     def get_queryset(self):
         "Адреса доставки только этого юзера"
-        queryset = DeliveryAddress.objects.filter(Contractor=self.request.user)
+        queryset = DeliveryAddress.objects.filter(user=self.request.user)
         return queryset
 
 
@@ -136,7 +136,7 @@ class AddressCreateView(LoginRequiredMixin, CreateView):
 
     # только для текущего юзера
     def form_valid(self, form):
-        form.instance.Contractor = self.request.user
+        form.instance.user = self.request.user
         return super().form_valid(form)
 
 
@@ -159,7 +159,7 @@ class OrganisationListView(LoginRequiredMixin, ListView):
 
     def get_queryset(self):
         "Организации  только этого юзера"
-        queryset = Organisation.objects.filter(Contractor=self.request.user)
+        queryset = Organisation.objects.filter(user=self.request.user)
         return queryset
 
 
@@ -173,7 +173,7 @@ class OrganisationCreateView(LoginRequiredMixin, CreateView):
 
     # только для текущего юзера
     def form_valid(self, form):
-        form.instance.Contractor = self.request.user
+        form.instance.user = self.request.user
         return super().form_valid(form)
 
 
