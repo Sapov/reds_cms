@@ -33,11 +33,6 @@ class Delivery(models.TextChoices):
     YANDEX = "YANDEX_DELIVERY", "Яндекс-доставка"
     CDEK = "CDEK", "Доставка СДЕК"
 
-    class Meta:
-        verbose_name_plural = "Типы доставки"
-        verbose_name = "Тип Доставки"
-        ordering = ["type_delivery"]
-
 
 class DeliveryAddress(models.Model):
     '''Адреса доставки польлmзователя'''
@@ -55,7 +50,7 @@ class DeliveryAddress(models.Model):
     first_name = models.CharField(max_length=100, verbose_name="Имя получателя", null=True, blank=True)
     second_name = models.CharField(max_length=100, verbose_name="Фамилия получателя", null=True, blank=True)
     phone = models.CharField(max_length=100, verbose_name="Телефон получателя", null=True, blank=True)
-    delivery_method = models.CharField(max_length=24, choices=Delivery.choices, default=Delivery.YANDEX, )
+    delivery_method = models.CharField(max_length=36, choices=Delivery.choices, default=Delivery.YANDEX, )
 
     class Meta:
         verbose_name_plural = "Адреса доставки"
