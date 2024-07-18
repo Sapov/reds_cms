@@ -38,8 +38,8 @@
                 <td>{{ item.city }} {{ item.street }} {{ item.house}}</td>
                 <td>{{ item.first_name }} {{ item.last_name }}</td>
                 <td>{{ item.phone_number }}</td>
-                <td><a href="{% url 'user_update' item.id %}">Изменить</a></td>
-                <td><a href="{% url 'user_delete' item.id %}">Удалить</a></td>
+                <td><a href="{% url 'address_update' item.id %}">Изменить</a></td>
+                <td><a href="{% url 'address_delete' item.id %}">Удалить</a></td>
 
             </tr>
             {% endfor %}
