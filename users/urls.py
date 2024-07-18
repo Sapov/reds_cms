@@ -27,10 +27,10 @@ urlpatterns = [
     path('update_address/<pk>', AddressUpdateView.as_view(), name='address_update'),
     path('delete_address/<pk>', AddressDeleteView.as_view(), name='address_delete'),
     # ---------------------CRUD ORGANISATION---------------------
-    path('list_organization/', OrganisationListView.as_view(), name='list_organization'),
-    path('create_organisation/', OrganisationCreateView.as_view(), name='create_organisation'),
-    path('update_organisation/<pk>', OrganisationUpdateView.as_view(), name='update_organisation'),
-    path('delete_organisation/<pk>', OrganisationDeleteView.as_view(), name='delete_organisation'),
+    path('list_organization/', OrganisationListView.as_view(), name='organization_list'),
+    path('create_organisation/', OrganisationCreateView.as_view(), name='organization_create'),
+    path('update_organisation/<pk>', OrganisationUpdateView.as_view(), name='organization_update'),
+    path('delete_organisation/<pk>', OrganisationDeleteView.as_view(), name='organization_delete'),
 
 
 ]

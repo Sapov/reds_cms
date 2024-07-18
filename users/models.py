@@ -78,7 +78,7 @@ class Organisation(models.Model):
         null=True,
         blank=True,
         verbose_name="Юр. Адрес",
-        help_text="Полный почтовый адрес",
+        help_text="Юридический почтовый адрес",
     )
     address_post = models.TextField(
         null=True, blank=True, verbose_name="Почтовый Адрес"
@@ -97,8 +97,6 @@ class Organisation(models.Model):
         auto_now_add=True, db_index=True, verbose_name="Опубликовано"
     )
 
-    # user = models.ForeignKey('auth.User', on_delete=models.CASCADE)
-
     class Meta:
         verbose_name_plural = "Организации"
         verbose_name = "Организация"
@@ -106,3 +104,6 @@ class Organisation(models.Model):
 
     def __str__(self):
         return self.name_ul
+
+    def get_absolute_url(self):
+        return reverse('organization_list')

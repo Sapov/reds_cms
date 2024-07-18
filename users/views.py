@@ -171,9 +171,7 @@ class OrganisationCreateView(LoginRequiredMixin, CreateView):
     '''Добавление новой организации'''
     fields = ('__all__')
     model = Organisation
-
-
-template_name = "users/organisation_create.html"  # Переходим на страницу создания организации
+    template_name = "users/organization_create.html"
 
 
 class OrganisationUpdateView(LoginRequiredMixin, UpdateView):
@@ -185,4 +183,4 @@ class OrganisationUpdateView(LoginRequiredMixin, UpdateView):
 class OrganisationDeleteView(LoginRequiredMixin, DeleteView):
     '''Удаление организации'''
     model = Organisation
-    success_url = reverse_lazy('organisation_list')
+    success_url = reverse_lazy('organization_list')
