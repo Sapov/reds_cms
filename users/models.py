@@ -31,3 +31,33 @@ class User(AbstractUser):
 
     def get_absolute_url(self):
         return reverse('user_list')
+
+
+class DeliveryAddress(models.Model):
+    # user = models.ForeignKey(
+    #     settings.AUTH_USER_MODEL, on_delete=models.CASCADE, verbose_name="ЗАКАЗЧИК!!", null=True, blank=True
+    # )
+    region = models.CharField(max_length=100, verbose_name="Область", null=True, blank=True)
+    city = models.CharField(max_length=200, verbose_name="Город", null=True, blank=True)
+    street = models.CharField(max_length=200, verbose_name="Улица", null=True, blank=True)
+    house = models.CharField(max_length=200, verbose_name="Дом", null=True, blank=True)
+    entrance = models.CharField(max_length=10, verbose_name="Подъезд", null=True, blank=True)
+    floor = models.CharField(max_length=10, verbose_name="Этаж", null=True, blank=True)
+    flat = models.CharField(max_length=10, verbose_name="Квартира/офис", null=True, blank=True)
+
+    first_name = models.CharField(max_length=100, verbose_name="Имя получателя", null=True, blank=True)
+    second_name = models.CharField(max_length=100, verbose_name="Фамилия получателя", null=True, blank=True)
+    phone = models.CharField(max_length=100, verbose_name="Телефон получателя", null=True, blank=True)
+    delivery_method = models.ForeignKey(Delivery, on_delete=models.PROTECT, null=True,
+                                        blank=True,
+                                        verbose_name="Тип доставки",
+                                        default=2,
+                                        )
+
+    class Meta:
+        verbose_name_plural = "Адреса доставки"
+        verbose_name = "Адреса доставки"
+        ordering = ["street"]
+
+    def __str__(self):
+        return f"{self.delivery_method}-{self.city}-{self.street}-{self.house}"
