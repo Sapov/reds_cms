@@ -69,4 +69,7 @@ class DeliveryAddress(models.Model):
     def __str__(self):
         return f"{self.delivery_method}-{self.city}-{self.street}-{self.house}"
 
+    def get_absolute_url(self):
+        return reverse('address_list')
+
 
