@@ -150,3 +150,7 @@ class AddressCreateView(LoginRequiredMixin, CreateView):
     model = DeliveryAddress
 
 
+class AddressUpdateView(LoginRequiredMixin, UpdateView):
+    '''Редактирование адреса доставки для пользователя'''
+    model = DeliveryAddress
+    fields = ('__all__')

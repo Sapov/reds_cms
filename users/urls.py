@@ -2,7 +2,7 @@ from django.urls import path, include
 from django.views.generic import TemplateView
 
 from users.views import Register, EmailVerify, dashboard, UserListView, UserCreateView, UserUpdateView, UserDeleteView, \
-    edit_profile, AddressListView
+    edit_profile, AddressListView, AddressCreateView, AddressUpdateView
 
 urlpatterns = [
     # ------------------------AUTH------------------
@@ -22,5 +22,6 @@ urlpatterns = [
     path('edit_profile', edit_profile, name='edit_profile'),
     # -----------------CRUD ADDRESS DELIVERY---------------------
     path('list_address/', AddressListView.as_view(), name='address_list'),
-    path('create_address/', AddressCreateView.as_view(), name='create_address')
+    path('create_address/', AddressCreateView.as_view(), name='create_address'),
+    path('update_address/<pk>', AddressUpdateView.as_view(), name='update_address')
 ]
