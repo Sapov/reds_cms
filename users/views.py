@@ -142,18 +142,30 @@ class AddressListView(LoginRequiredMixin, ListView):
     model = DeliveryAddress
     template_name = "users/address_list.html"
 
+    def get_queryset(self):
+        "Адреса доставки только этого юзера"
+        queryset = DeliveryAddress.objects.filter(Contractor=self.request.user)
+        return queryset
+
 
 class AddressCreateView(LoginRequiredMixin, CreateView):
     '''Добавление нового адреса доставки для пользователя'''
-    fields = ('__all__')
+    fields = ['region', 'city', 'street', 'house', 'entrance', 'floor', 'flat', 'first_name', 'second_name',
+              'phone', 'delivery_method']
     template_name = "users/address_create.html"
     model = DeliveryAddress
+
+    # только для текущего юзера
+    def form_valid(self, form):
+        form.instance.Contractor = self.request.user
+        return super().form_valid(form)
 
 
 class AddressUpdateView(LoginRequiredMixin, UpdateView):
     '''Редактирование адреса доставки для пользователя'''
     model = DeliveryAddress
-    fields = ('__all__')
+    fields = ['region', 'city', 'street', 'house', 'entrance', 'floor', 'flat', 'first_name', 'second_name',
+              'phone', 'delivery_method']
 
 
 class AddressDeleteView(LoginRequiredMixin, DeleteView):
@@ -166,12 +178,24 @@ class OrganisationListView(LoginRequiredMixin, ListView):
     model = Organisation
     template_name = "users/organisation_list.html"  # Переходим на страницу списка организаций
 
+    def get_queryset(self):
+        "Организации  только этого юзера"
+        queryset = Organisation.objects.filter(Contractor=self.request.user)
+        return queryset
+
 
 class OrganisationCreateView(LoginRequiredMixin, CreateView):
     '''Добавление новой организации'''
-    fields = ('__all__')
+    # fields = ('__all__')
+    fields = ['name_ul', 'address_ur', 'address_post', 'phone', 'phone2', 'email', 'inn',
+              'kpp', 'okpo']
     model = Organisation
     template_name = "users/organization_create.html"
+
+    # только для текущего юзера
+    def form_valid(self, form):
+        form.instance.Contractor = self.request.user
+        return super().form_valid(form)
 
 
 class OrganisationUpdateView(LoginRequiredMixin, UpdateView):
