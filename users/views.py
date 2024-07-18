@@ -10,7 +10,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.tokens import default_token_generator as \
     token_generator
 from users.forms import UserCreationForm, AuthenticationForm, UserEditForm
-from users.models import DeliveryAddress
+from users.models import DeliveryAddress, Organisation
 from users.utils import send_email_for_verify
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.views.generic.list import ListView
@@ -160,3 +160,29 @@ class AddressDeleteView(LoginRequiredMixin, DeleteView):
     '''Удаление адреса доставки для пользователя'''
     model = DeliveryAddress
     success_url = reverse_lazy('address_list')  # Переходим на страницу списка адресов
+
+
+class OrganisationListView(LoginRequiredMixin, ListView):
+    model = Organisation
+    template_name = "users/organisation_list.html"  # Переходим на страницу списка организаций
+
+
+class OrganisationCreateView(LoginRequiredMixin, CreateView):
+    '''Добавление новой организации'''
+    fields = ('__all__')
+    model = Organisation
+
+
+template_name = "users/organisation_create.html"  # Переходим на страницу создания организации
+
+
+class OrganisationUpdateView(LoginRequiredMixin, UpdateView):
+    model = Organisation
+    fields = ('__all__')
+    template_name = "users/organisation_update.html"
+
+
+class OrganisationDeleteView(LoginRequiredMixin, DeleteView):
+    '''Удаление организации'''
+    model = Organisation
+    success_url = reverse_lazy('organisation_list')
