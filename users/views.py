@@ -10,7 +10,7 @@ from django.contrib.auth.tokens import default_token_generator as \
     token_generator
 from users.forms import UserCreationForm, AuthenticationForm
 from users.utils import send_email_for_verify
-from django.views.generic.edit import CreateView
+from django.views.generic.edit import CreateView, UpdateView
 from django.views.generic.list import ListView
 
 User = get_user_model()
@@ -103,7 +103,17 @@ class UserListView(LoginRequiredMixin, ListView):
 
 
 class UserCreateView(LoginRequiredMixin, CreateView):
+    '''Добавление нового пользователя'''
     fields = ('__all__')
     template_name = "users/user_create.html"
     model = User
-    success_url = '/'
+    # success_url = '/'
+
+
+class UserUpdateView(UpdateView):
+    '''Редактирование пользователя'''
+    model = User
+    # fields = ['username', 'phone_number', 'first_name', 'last_name', 'email', 'is_active', 'email_verify']
+    fields = ('__all__')
+
+    template_name_suffix = '_update_form'
