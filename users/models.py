@@ -33,7 +33,17 @@ class User(AbstractUser):
         return reverse('user_list')
 
 
+class Delivery(models.Model):
+    type_delivery = models.CharField(max_length=200, verbose_name="Тип доставки", default=2)
+
+    class Meta:
+        verbose_name_plural = "Типы доставки"
+        verbose_name = "Тип Доставки"
+        ordering = ["type_delivery"]
+
+
 class DeliveryAddress(models.Model):
+    '''Адреса доставки польлmзователя'''
     # user = models.ForeignKey(
     #     settings.AUTH_USER_MODEL, on_delete=models.CASCADE, verbose_name="ЗАКАЗЧИК!!", null=True, blank=True
     # )
