@@ -17,7 +17,7 @@ class Role(models.TextChoices):
 class User(AbstractUser):
     phone_number = models.CharField(max_length=15, blank=True, verbose_name='Телефон')
     role = models.CharField(max_length=24, choices=Role.choices, default=Role.CUSTOMER_RETAIL)
-    email = models.EmailField(_("email address"), unique=True,)
+    email = models.EmailField(_("email address"), unique=True, )
     email_verify = models.BooleanField(default=False)
 
     USERNAME_FIELD = "email"
@@ -27,11 +27,11 @@ class User(AbstractUser):
         return reverse('user_list')
 
 
-class Delivery(models.Model):
-    type_delivery = models.CharField(max_length=200, verbose_name="Тип доставки", default=2)
+class Delivery(models.TextChoices):
+    """Типы Доставки"""
 
-    def __str__(self):
-        return self.type_delivery
+    YANDEX = "YANDEX_DELIVERY", "Яндекс-доставка"
+    CDEK = "CDEK", "Доставка СДЕК"
 
     class Meta:
         verbose_name_plural = "Типы доставки"
@@ -55,11 +55,7 @@ class DeliveryAddress(models.Model):
     first_name = models.CharField(max_length=100, verbose_name="Имя получателя", null=True, blank=True)
     second_name = models.CharField(max_length=100, verbose_name="Фамилия получателя", null=True, blank=True)
     phone = models.CharField(max_length=100, verbose_name="Телефон получателя", null=True, blank=True)
-    delivery_method = models.ForeignKey(Delivery, on_delete=models.PROTECT, null=True,
-                                        blank=True,
-                                        verbose_name="Тип доставки",
-                                        default=2,
-                                        )
+    delivery_method = models.CharField(max_length=24, choices=Delivery.choices, default=Delivery.YANDEX, )
 
     class Meta:
         verbose_name_plural = "Адреса доставки"
@@ -71,5 +67,3 @@ class DeliveryAddress(models.Model):
 
     def get_absolute_url(self):
         return reverse('address_list')
-
-
