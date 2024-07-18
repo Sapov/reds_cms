@@ -46,7 +46,6 @@ class DeliveryAddress(models.Model):
     entrance = models.CharField(max_length=10, verbose_name="Подъезд", null=True, blank=True)
     floor = models.CharField(max_length=10, verbose_name="Этаж", null=True, blank=True)
     flat = models.CharField(max_length=10, verbose_name="Квартира/офис", null=True, blank=True)
-
     first_name = models.CharField(max_length=100, verbose_name="Имя получателя", null=True, blank=True)
     second_name = models.CharField(max_length=100, verbose_name="Фамилия получателя", null=True, blank=True)
     phone = models.CharField(max_length=100, verbose_name="Телефон получателя", null=True, blank=True)
