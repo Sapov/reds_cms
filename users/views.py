@@ -9,7 +9,7 @@ from django.views import View
 from django.shortcuts import render, redirect
 from django.contrib.auth.tokens import default_token_generator as \
     token_generator
-from users.forms import UserCreationForm, AuthenticationForm
+from users.forms import UserCreationForm, AuthenticationForm, UserEditForm
 from users.utils import send_email_for_verify
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.views.generic.list import ListView
@@ -123,3 +123,15 @@ class UserDeleteView(LoginRequiredMixin, DeleteView):
     ''' Удаление пользователя  '''
     model = User
     success_url = reverse_lazy('user_list')
+
+
+def edit_profile(request):
+    '''Изменение текущего профиля'''
+    if request.method == "POST":
+        user_form = UserEditForm(instance=request.user, data=request.POST)
+        if user_form.is_valid():
+            user_form.save()
+        return render(request, "users/complite_edit.html")
+    else:
+        user_form = UserEditForm(instance=request.user)
+    return render(request, "users/edit_profile.html", {"user_form": user_form})

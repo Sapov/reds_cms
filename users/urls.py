@@ -1,7 +1,8 @@
 from django.urls import path, include
 from django.views.generic import TemplateView
 
-from users.views import Register, EmailVerify, dashboard, UserListView, UserCreateView, UserUpdateView, UserDeleteView
+from users.views import Register, EmailVerify, dashboard, UserListView, UserCreateView, UserUpdateView, UserDeleteView, \
+    edit_profile
 
 urlpatterns = [
     # ------------------------AUTH------------------
@@ -17,4 +18,6 @@ urlpatterns = [
     path('user_create/', UserCreateView.as_view(), name='user_create'),
     path('user_update/<pk>', UserUpdateView.as_view(), name='user_update'),
     path('user_delete/<pk>', UserDeleteView.as_view(), name='user_delete'),
+    # ----------------------------EDITPROFILE USER-------------------
+    path('edit_profile', edit_profile, name='edit_profile'),
 ]
