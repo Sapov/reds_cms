@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block title %} Добавить организацию пользователя{% endblock %}
+{% load crispy_forms_tags %}
+
+{% block body %}
+
+<h3>Новая организация пользователь</h3>
+<form method="post">
+    {% csrf_token %}
+    {{ form|crispy }}
+
+
+    <input type="submit" value="Добавить">
+</form>
+{% endblock %}

@@ -1,3 +1,4 @@
+from django.conf import settings
 from django.contrib.auth.models import AbstractUser
 from django.db import models
 from django.utils.translation import gettext_lazy as _
@@ -36,9 +37,8 @@ class Delivery(models.TextChoices):
 
 class DeliveryAddress(models.Model):
     '''Адреса доставки польлmзователя'''
-    # user = models.ForeignKey(
-    #     settings.AUTH_USER_MODEL, on_delete=models.CASCADE, verbose_name="ЗАКАЗЧИК!!", null=True, blank=True
-    # )
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, verbose_name="ЗАКАЗЧИК",
+                                   null=True, blank=True)
     region = models.CharField(max_length=100, verbose_name="Область", null=True, blank=True)
     city = models.CharField(max_length=200, verbose_name="Город", null=True, blank=True)
     street = models.CharField(max_length=200, verbose_name="Улица", null=True, blank=True)
@@ -61,3 +61,48 @@ class DeliveryAddress(models.Model):
 
     def get_absolute_url(self):
         return reverse('address_list')
+
+
+class Organisation(models.Model):
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, verbose_name="ЗАКАЗЧИК",
+                                   default=1,
+                                   )
+    name_ul = models.CharField(
+        max_length=70,
+        verbose_name="Имя юр. лица",
+        help_text="Форма собственности и название.",
+        default="ООО Рога и Копыта",
+    )
+    address_ur = models.TextField(
+        null=True,
+        blank=True,
+        verbose_name="Юр. Адрес",
+        help_text="Юридический почтовый адрес",
+    )
+    address_post = models.TextField(
+        null=True, blank=True, verbose_name="Почтовый Адрес"
+    )
+    phone = models.CharField(max_length=20, blank=True, verbose_name="Телефон")
+    phone2 = models.CharField(
+        max_length=20, blank=True, verbose_name="Телефон резервный"
+    )
+    email = models.EmailField(
+        max_length=20, blank=True, verbose_name="Электронная почта"
+    )
+    inn = models.CharField(max_length=12, verbose_name="ИНН", blank=True)
+    kpp = models.CharField(max_length=9, verbose_name="КПП", blank=True)
+    okpo = models.CharField(max_length=12, blank=True, verbose_name="ОКПО")
+    published = models.DateTimeField(
+        auto_now_add=True, db_index=True, verbose_name="Опубликовано"
+    )
+
+    class Meta:
+        verbose_name_plural = "Организации"
+        verbose_name = "Организация"
+        ordering = ["name_ul"]
+
+    def __str__(self):
+        return self.name_ul
+
+    def get_absolute_url(self):
+        return reverse('organization_list')
