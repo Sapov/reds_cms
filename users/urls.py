@@ -21,5 +21,6 @@ urlpatterns = [
     # -------------------------EDIT PROFILE USER-------------------
     path('edit_profile', edit_profile, name='edit_profile'),
     # -----------------CRUD ADDRESS DELIVERY---------------------
-    path('list_address/', AddressListView.as_view(), name='address_list')
+    path('list_address/', AddressListView.as_view(), name='address_list'),
+    path('create_address/', AddressCreateView.as_view(), name='create_address')
 ]

@@ -65,3 +65,5 @@ class DeliveryAddress(models.Model):
 
     def __str__(self):
         return f"{self.delivery_method}-{self.city}-{self.street}-{self.house}"
+
+

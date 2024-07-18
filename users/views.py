@@ -141,3 +141,12 @@ def edit_profile(request):
 class AddressListView(LoginRequiredMixin, ListView):
     model = DeliveryAddress
     template_name = "users/address_list.html"
+
+
+class AddressCreateView(LoginRequiredMixin, CreateView):
+    '''Добавление нового адреса доставки для пользователя'''
+    fields = ('__all__')
+    template_name = "users/address_create.html"
+    model = DeliveryAddress
+
+
