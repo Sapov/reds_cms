@@ -30,13 +30,13 @@ class User(AbstractUser):
 
 class Delivery(models.TextChoices):
     """Типы Доставки"""
-    SAMOVIVOZ = "SAMOVIVO", "Самовывоз"
+    SAMOVIVOZ = "SAMOVIVOZ", "Самовывоз"
     YANDEX = "YANDEX_DELIVERY", "Яндекс-доставка"
     CDEK = "CDEK", "Доставка СДЕК"
 
 
 class DeliveryAddress(models.Model):
-    '''Адреса доставки польлmзователя'''
+    '''Адреса доставки пользователя'''
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, verbose_name="ЗАКАЗЧИК",
                              null=True, blank=True)
     region = models.CharField(max_length=100, verbose_name="Область", null=True, blank=True)
