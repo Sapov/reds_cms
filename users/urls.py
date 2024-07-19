@@ -20,7 +20,7 @@ urlpatterns = [
     path('user_update/<pk>', UserUpdateView.as_view(), name='user_update'),
     path('user_delete/<pk>', UserDeleteView.as_view(), name='user_delete'),
     # -------------------------EDIT PROFILE USER-------------------
-    path('edit_profile', edit_profile, name='edit_profile'),
+    path('edit_profile/', edit_profile, name='edit_profile'),
     # -----------------CRUD ADDRESS DELIVERY---------------------
     path('list_address/', AddressListView.as_view(), name='address_list'),
     path('create_address/', AddressCreateView.as_view(), name='address_create'),
