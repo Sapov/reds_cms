@@ -50,7 +50,7 @@ class DeliveryAddress(models.Model):
     second_name = models.CharField(max_length=100, verbose_name="Фамилия получателя", null=True, blank=True)
     phone = models.CharField(max_length=100, verbose_name="Телефон получателя", null=True, blank=True)
     delivery_method = models.CharField(max_length=36, choices=Delivery.choices, default=Delivery.SAMOVIVOZ,
-                                       verbose_name="Метод доставки)
+                                       verbose_name="Метод доставки")
 
     class Meta:
         verbose_name_plural = "Адреса доставки"
