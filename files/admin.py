@@ -9,8 +9,8 @@ from .models import (
     UseCalculator,
 )
 
-admin.site.register(FinishWork)
-admin.site.register(TypePrint)
+# admin.site.register(FinishWork)
+# admin.site.register(TypePrint)
 
 
 class MaterialAdmin(admin.ModelAdmin):
@@ -49,16 +49,12 @@ class UseCalculatorAdmin(admin.ModelAdmin):
 admin.site.register(UseCalculator, UseCalculatorAdmin)
 
 
-
 class FinishWorkAdmin(admin.ModelAdmin):
     list_display = [field.name for field in FinishWork._meta.fields]
     list_editable = ["price_contractor", "price", "price_customer_retail", "is_active"]
 
     class Meta:
         model = FinishWork
-
-
-admin.site.register(FinishWork, FinishWorkAdmin)
 
 
 class TypePrintAdmin(admin.ModelAdmin):
@@ -70,3 +66,4 @@ class TypePrintAdmin(admin.ModelAdmin):
 
 admin.site.register(TypePrint, TypePrintAdmin)
 admin.site.register(StatusProduct)
+admin.site.register(FinishWork, FinishWorkAdmin)
