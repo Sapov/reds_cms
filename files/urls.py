@@ -1,10 +1,14 @@
 from django.urls import path, include
-from files.views import calculator, myfiles, create_files
+from files.views import FilesCreateView, calculator, myfiles, create_files
 
 app_name = 'files'
 
 urlpatterns = [
-    path('calculator/', calculator, name='calculator'),
-    path('create_files/', create_files, name='create_files'),
-    path('myfiles/', myfiles, name='myfiles'),
+    # ------------------CRUD FILE-----------------
+    path('load_file/', FilesCreateView.as_view(), name='load_file'),
+
+    path('calculate/', calculator, name='calculator'),
+    path('myfiles/', calculator, name='myfiles'),
+    path('create_files/', calculator, name='create_files'),
+
 ]
