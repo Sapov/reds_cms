@@ -30,7 +30,7 @@ class User(AbstractUser):
 
 class Delivery(models.TextChoices):
     """Типы Доставки"""
-
+    SAMOVIVOZ = "SAMOVIVO", "Самовывоз"
     YANDEX = "YANDEX_DELIVERY", "Яндекс-доставка"
     CDEK = "CDEK", "Доставка СДЕК"
 
@@ -38,7 +38,7 @@ class Delivery(models.TextChoices):
 class DeliveryAddress(models.Model):
     '''Адреса доставки польлmзователя'''
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, verbose_name="ЗАКАЗЧИК",
-                                   null=True, blank=True)
+                             null=True, blank=True)
     region = models.CharField(max_length=100, verbose_name="Область", null=True, blank=True)
     city = models.CharField(max_length=200, verbose_name="Город", null=True, blank=True)
     street = models.CharField(max_length=200, verbose_name="Улица", null=True, blank=True)
@@ -49,7 +49,7 @@ class DeliveryAddress(models.Model):
     first_name = models.CharField(max_length=100, verbose_name="Имя получателя", null=True, blank=True)
     second_name = models.CharField(max_length=100, verbose_name="Фамилия получателя", null=True, blank=True)
     phone = models.CharField(max_length=100, verbose_name="Телефон получателя", null=True, blank=True)
-    delivery_method = models.CharField(max_length=36, choices=Delivery.choices, default=Delivery.YANDEX, )
+    delivery_method = models.CharField(max_length=36, choices=Delivery.choices, default=Delivery.SAMOVIVOZ, )
 
     class Meta:
         verbose_name_plural = "Адреса доставки"
@@ -65,8 +65,8 @@ class DeliveryAddress(models.Model):
 
 class Organisation(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, verbose_name="ЗАКАЗЧИК",
-                                   default=1,
-                                   )
+                             default=1,
+                             )
     name_ul = models.CharField(
         max_length=70,
         verbose_name="Имя юр. лица",
