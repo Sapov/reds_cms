@@ -116,6 +116,17 @@ class Material(models.Model):
         ordering = ["name"]
 
 
+class StatusProduct(models.Model):
+    status = models.CharField(max_length=64, verbose_name="Статус файла")
+
+    def __str__(self):
+        return f"{self.status}"
+
+    class Meta:
+        verbose_name_plural = "Статусы файлов"
+        verbose_name = "Статус файла"
+
+
 class Product(models.Model):
     objects = None
     Contractor = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.PROTECT, verbose_name="ЗАКАЗЧИК!!",
