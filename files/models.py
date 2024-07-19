@@ -35,3 +35,16 @@ class FinishWork(models.Model):
     class Meta:
         verbose_name_plural = "Финишные обработки"
         verbose_name = "Финишная обработка"
+
+
+class TypePrint(models.Model):
+    type_print = models.CharField(max_length=128, verbose_name="Метод печати")
+    info_type_print = models.TextField(verbose_name="Описание метода печати")
+
+    class Meta:
+        verbose_name_plural = "Типы печати"
+        verbose_name = "Тип печати"
+        ordering = ["type_print"]
+
+    def __str__(self):
+        return self.type_print
