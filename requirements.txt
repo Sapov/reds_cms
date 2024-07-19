@@ -6,3 +6,4 @@ gunicorn==22.0.0
 django-crispy-forms==2.0
 crispy-bootstrap4==2022.1
 selenium~=4.22.0
+pillow==10.3.0
