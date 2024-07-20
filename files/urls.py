@@ -1,7 +1,7 @@
 from django.urls import path, include
 from files.views import AddFilesUserCreateView, calculator, ViewFilesUserListView, \
     EditFilesUserUpdateView, DeleteFilesUserDeleteView, FilesCreateViewInter, FilesCreateViewLarge, FilesCreateViewUV, \
-    FilesCreateViewRollUp
+    FilesCreateViewRollUp, price
 
 app_name = 'files'
 
@@ -16,6 +16,8 @@ urlpatterns = [
     path('', ViewFilesUserListView.as_view(), name='myfiles'),
     path('edit_file/<int:pk>/', EditFilesUserUpdateView.as_view(), name='edit_file'),
     path('delete_file/<int:pk>/', DeleteFilesUserDeleteView.as_view(), name='delete_file'),
+    # ---------------------------------price---------------------------------
+    path('price/', price, name='price'),
 
     path('calculate/', calculator, name='calculator'),
     path('create_files/', calculator, name='create_files'),
