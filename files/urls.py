@@ -2,6 +2,7 @@ from django.urls import path, include
 from files.views import AddFilesUserCreateView, calculator, ViewFilesUserListView, \
     EditFilesUserUpdateView, DeleteFilesUserDeleteView
 
+
 app_name = 'files'
 
 urlpatterns = [

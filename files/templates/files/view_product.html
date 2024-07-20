@@ -1,4 +1,5 @@
 {% extends 'base.html'%}
+{% load thumbnail %}
 <title>{% block title %}Главная страница{% endblock %}</title>
 {% block body %}
 {% if object_list.count > 0 %}
@@ -26,7 +27,8 @@
             {% for product in page_obj %}
             <tr>
                 <td>{{ product.id }}</td>
-                <td><a>{% load thumbnail %} <img src="{% thumbnail product.images 100x0 %}" class="image-detail"></a></td>
+                <td><img src="{{ product.images|thumbnail_url:'preview_user_files' }}" alt=""></td>
+
                 <td>{{ product.material }}</td>
                 <td>{{ product.quantity }} шт.</td>
                 <td>{{ product.width }} х {{ product.length }} см.</td>
