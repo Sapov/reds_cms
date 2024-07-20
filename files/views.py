@@ -1,5 +1,5 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.views.generic import CreateView
+from django.views.generic import CreateView, UpdateView
 from django.views.generic import ListView
 
 from .models import Product
@@ -26,6 +26,14 @@ class ViewFilesUserListView(LoginRequiredMixin, ListView):
     def get_queryset(self):
         queryset = Product.objects.filter(Contractor=self.request.user).order_by("-id")
         return queryset
+
+
+class UpdateFilesUserUpdateView(LoginRequiredMixin, UpdateView):
+    '''Редактирование файла пользователя'''
+    model = Product
+    fields = ["quantity", "material", "FinishWork"]
+    template_name = "files/product_update_form.html"
+    login_url = "login"
 
 
 def calculator(request): pass
