@@ -35,3 +35,17 @@ class UploadFilesLarge(forms.ModelForm):
     class Meta:
         model = Product
         fields = ["quantity", "material", "FinishWork", "images", "comments"]
+
+
+class UploadFilesUV(forms.ModelForm):
+    """Форма загрузки файлов для UV-печати отфильтруем только UV-печать"""
+
+    material = forms.ModelChoiceField(
+        queryset=Material.objects.filter(type_print=3),
+        label="Выберите материал для печати",
+        initial=1,  # по умолчанию ПВХ 3 мм
+    )
+
+    class Meta:
+        model = Product
+        fields = ["quantity", "material", "FinishWork", "images", "comments"]

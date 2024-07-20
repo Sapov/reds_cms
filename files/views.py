@@ -5,7 +5,7 @@ from django.urls import reverse_lazy
 from django.views.generic import CreateView, UpdateView, DeleteView
 from django.views.generic import ListView
 
-from .forms import UploadFilesInter, UploadFilesLarge
+from .forms import UploadFilesInter, UploadFilesLarge, UploadFilesUV
 from .models import Product, Material
 
 
@@ -13,18 +13,6 @@ class AddFilesUserCreateView(LoginRequiredMixin, CreateView):
     '''Create a new file'''
     model = Product
     fields = ["quantity", "material", "FinishWork", "images", "comments"]
-
-    def form_valid(self, form):
-        form.instance.Contractor = self.request.user
-        return super().form_valid(form)
-
-
-class FilesCreateViewInter(LoginRequiredMixin, CreateView):
-    """Загрузка файлов только для интерьерной печати"""
-
-    model = Product
-    form_class = UploadFilesInter
-    template_name = "files/inter_print.html"
 
     def form_valid(self, form):
         form.instance.Contractor = self.request.user
@@ -40,6 +28,19 @@ class FilesCreateViewLarge(LoginRequiredMixin, CreateView):
     def form_valid(self, form):
         form.instance.Contractor = self.request.user
         return super().form_valid(form)
+
+
+class FilesCreateViewUV(FilesCreateViewLarge, LoginRequiredMixin, CreateView):
+    """Загрузка файлов только для UV печати"""
+    form_class = UploadFilesUV
+    template_name = "files/uv_print.html"
+
+
+class FilesCreateViewInter(FilesCreateViewLarge, LoginRequiredMixin, CreateView):
+    """Загрузка файлов только для интерьерной печати"""
+
+    form_class = UploadFilesInter
+    template_name = "files/inter_print.html"
 
 
 class ViewFilesUserListView(LoginRequiredMixin, ListView):
