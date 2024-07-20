@@ -1,11 +1,13 @@
 import os
 
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.views.generic import CreateView, UpdateView, DeleteView
 from django.views.generic import ListView
 
-from .models import Product
+from .forms import UploadFilesInter, UploadFilesLarge, UploadFilesUV, UploadFilesRollUp
+from .models import Product, Material, FinishWork
 
 
 class AddFilesUserCreateView(LoginRequiredMixin, CreateView):
@@ -16,6 +18,38 @@ class AddFilesUserCreateView(LoginRequiredMixin, CreateView):
     def form_valid(self, form):
         form.instance.Contractor = self.request.user
         return super().form_valid(form)
+
+
+class FilesCreateViewLarge(LoginRequiredMixin, CreateView):
+    """Загрузка файлов только для широкоформатной печати"""
+    model = Product
+    form_class = UploadFilesLarge
+    template_name = "files/large_print.html"
+
+    def form_valid(self, form):
+        form.instance.Contractor = self.request.user
+        return super().form_valid(form)
+
+
+class FilesCreateViewUV(FilesCreateViewLarge, LoginRequiredMixin, CreateView):
+    """Загрузка файлов только для UV печати"""
+    form_class = UploadFilesUV
+    template_name = "files/uv_print.html"
+
+
+class FilesCreateViewInter(FilesCreateViewLarge, LoginRequiredMixin, CreateView):
+    """Загрузка файлов только для интерьерной печати"""
+
+    form_class = UploadFilesInter
+    template_name = "files/inter_print.html"
+
+
+class FilesCreateViewRollUp(FilesCreateViewLarge, LoginRequiredMixin, CreateView):
+    """Загрузка файлов только для Rollup"""
+
+    model = Product
+    form_class = UploadFilesRollUp
+    template_name = "files/rollup_print.html"
 
 
 class ViewFilesUserListView(LoginRequiredMixin, ListView):
@@ -52,3 +86,16 @@ def myfiles(request): pass
 
 
 def create_files(request): pass
+
+
+def price(request):
+    '''Вывод прайс-листа'''
+    price_shirka = Material.objects.filter(type_print=1)
+    price_interierka = Material.objects.filter(type_print=2)
+    price_UV = Material.objects.filter(type_print=3)
+    blank_material = Material.objects.filter(type_print=4)
+    finishka = FinishWork.objects.all()
+    context = {'price_shirka': price_shirka, 'price_interierka': price_interierka, 'price_UV': price_UV,
+               'blank_material': blank_material, 'finishka': finishka}
+
+    return render(request, "files/price.html", context)
