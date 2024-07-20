@@ -5,7 +5,7 @@ from django.urls import reverse_lazy
 from django.views.generic import CreateView, UpdateView, DeleteView
 from django.views.generic import ListView
 
-from .forms import UploadFilesInter
+from .forms import UploadFilesInter, UploadFilesLarge
 from .models import Product, Material
 
 
@@ -25,6 +25,17 @@ class FilesCreateViewInter(LoginRequiredMixin, CreateView):
     model = Product
     form_class = UploadFilesInter
     template_name = "files/inter_print.html"
+
+    def form_valid(self, form):
+        form.instance.Contractor = self.request.user
+        return super().form_valid(form)
+
+
+class FilesCreateViewLarge(LoginRequiredMixin, CreateView):
+    """Загрузка файлов только для широкоформатной печати"""
+    model = Product
+    form_class = UploadFilesLarge
+    template_name = "files/large_print.html"
 
     def form_valid(self, form):
         form.instance.Contractor = self.request.user

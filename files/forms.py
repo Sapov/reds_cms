@@ -21,3 +21,17 @@ class UploadFilesInter(forms.ModelForm):
             "images",
             "comments"
         ]
+
+
+class UploadFilesLarge(forms.ModelForm):
+    """Форма загрузки файлов для Широкоформатной печати отфильтруем только широкоформатную печать"""
+
+    material = forms.ModelChoiceField(
+        queryset=Material.objects.filter(type_print=1),
+        label="Выберите материал для печати",
+        initial=1,  # по умолчанию 440 баннер
+    )
+
+    class Meta:
+        model = Product
+        fields = ["quantity", "material", "FinishWork", "images", "comments"]
