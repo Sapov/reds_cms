@@ -1,6 +1,7 @@
 from django import forms
 
 from files.models import Material, Product
+from .models import *
 
 
 class UploadFilesInter(forms.ModelForm):
@@ -49,3 +50,22 @@ class UploadFilesUV(forms.ModelForm):
     class Meta:
         model = Product
         fields = ["quantity", "material", "FinishWork", "images", "comments"]
+
+
+class UploadFilesRollUp(forms.ModelForm):
+    """Форма загрузки файлов для интерьерной печати полотна для Роллапа"""
+
+    material = forms.ModelChoiceField(
+        queryset=Material.objects.filter(id=2),
+        label="Выберите материал для печати",
+        initial=2,  # по умолчанию литой 450 грамм
+    )
+    FinishWork = forms.ModelChoiceField(
+        queryset=FinishWork.objects.filter(id=2),
+        label="Финишная обработка",
+        initial=2,
+    )
+
+    class Meta:
+        model = Product
+        fields = ["quantity", "images"]

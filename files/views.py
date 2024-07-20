@@ -5,7 +5,7 @@ from django.urls import reverse_lazy
 from django.views.generic import CreateView, UpdateView, DeleteView
 from django.views.generic import ListView
 
-from .forms import UploadFilesInter, UploadFilesLarge, UploadFilesUV
+from .forms import UploadFilesInter, UploadFilesLarge, UploadFilesUV, UploadFilesRollUp
 from .models import Product, Material
 
 
@@ -41,6 +41,14 @@ class FilesCreateViewInter(FilesCreateViewLarge, LoginRequiredMixin, CreateView)
 
     form_class = UploadFilesInter
     template_name = "files/inter_print.html"
+
+
+class FilesCreateViewRollUp(FilesCreateViewLarge, LoginRequiredMixin, CreateView):
+    """Загрузка файлов только для Rollup"""
+
+    model = Product
+    form_class = UploadFilesRollUp
+    template_name = "files/rollup_print.html"
 
 
 class ViewFilesUserListView(LoginRequiredMixin, ListView):
