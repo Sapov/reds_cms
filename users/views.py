@@ -178,6 +178,7 @@ class OrganisationCreateView(LoginRequiredMixin, CreateView):
 
 
 class OrganisationUpdateView(LoginRequiredMixin, UpdateView):
+    '''редактрование организации'''
     model = Organisation
     fields = ('__all__')
     template_name = "users/organisation_update.html"

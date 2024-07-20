@@ -114,3 +114,37 @@ class InvalidVerifyPageTests(TestCase):
 #
 #         self.assertEqual(view.func.__name__,
 #                          Register.as_view().__name__)
+
+
+class PageTests(TestCase):
+    ''' все адреса редиректят на форму логина'''
+    def test_invalid_verify_page(self):
+        url = reverse('invalid_verify')
+        self.response = self.client.get(url)
+        self.assertEqual(self.response.status_code, 200)
+
+    def test_page_user_list(self):
+        url = reverse('user_list')
+        self.response = self.client.get(url)
+        self.assertEqual(self.response.status_code, 302)
+
+    def test_page_user_create(self):
+        url = reverse('user_create')
+        self.response = self.client.get(url)
+        self.assertEqual(self.response.status_code, 302)
+
+    # def test_page_user_update(self):
+    #     url = reverse('user_update',)
+    #     self.response = self.client.get(url)
+    #     self.assertEqual(self.response.status_code, 302)
+    #
+    # def test_page_user_delete(self):
+    #     url = reverse('user_delete')
+    #     self.response = self.client.get(url)
+    #     self.assertEqual(self.response.status_code, 302)
+
+    # def test_page_edit_profile(self):
+    #     url = reverse('edit_profile')
+    #     self.response = self.client.get(url)
+    #     self.assertEqual(self.response.status_code, 302)
+

@@ -3,6 +3,7 @@ from pathlib import Path
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
 
@@ -12,7 +13,7 @@ SECRET_KEY = 'django-insecure-4nqovdc5p2f25x)bn(7$h^j*4f)m=0v$h+l2il5t5nrp4p$1tj
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 # Application definition
 
@@ -23,6 +24,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    "easy_thumbnails",
     'users.apps.UsersConfig',
     'files',
     'orders',
@@ -30,6 +32,27 @@ INSTALLED_APPS = [
     "crispy_bootstrap4",
 
 ]
+
+# _____________________LOGING________________________________
+LOGGING = {
+    "version": 1,
+    "disable_existing_loggers": False,
+    "formatters": {
+        "console": {"format": "%(name)-12s %(levelname)-8s %(message)s"},
+        "file": {"format": "%(asctime)s %(name)-12s %(levelname)-8s %(message)s"},
+    },
+    "handlers": {
+        "console": {"class": "logging.StreamHandler", "formatter": "console"},
+        "file": {
+            "level": "DEBUG",
+            "class": "logging.FileHandler",
+            "formatter": "file",
+            "filename": "debug.log",
+        },
+    },
+    "loggers": {"": {"level": "INFO", "handlers": ["console", "file"]}},
+}
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -115,11 +138,18 @@ AUTH_USER_MODEL = 'users.User'
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 LOGIN_REDIRECT_URL = "dashboard"
-# LOGOUT_REDIRECT_URI = "login"
 LOGIN_URL = "login"
 LOGOUT_URL = "logout"
 
-# _________________CRISPY FORM_________________
+MEDIA_URL = "/media/"
+MEDIA_ROOT = BASE_DIR / "media"
 
+# _________________CRISPY FORM_________________
 CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap4"
 CRISPY_TEMPLATE_PACK = "bootstrap4"
+#-------------------thumbnail SETTINGS----------
+THUMBNAIL_ALIASES = {
+    '': {
+        'preview_user_files': {'size': (100, 0), 'crop': 'smart'},
+    },
+}
