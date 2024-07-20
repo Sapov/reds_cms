@@ -1,5 +1,6 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.views.generic import CreateView, UpdateView
+from django.urls import reverse_lazy
+from django.views.generic import CreateView, UpdateView, DeleteView
 from django.views.generic import ListView
 
 from .models import Product
@@ -34,6 +35,13 @@ class EditFilesUserUpdateView(LoginRequiredMixin, UpdateView):
     fields = ["quantity", "material", "FinishWork"]
     template_name = "files/product_update_form.html"
     login_url = "login"
+
+
+class DeleteFilesUserDeleteView(LoginRequiredMixin, DeleteView):
+    '''Удалить файл пользователя'''
+    model = Product
+    success_url = reverse_lazy('files:myfiles')
+
 
 
 def calculator(request): pass
