@@ -12,7 +12,6 @@ import logging
 
 logger = logging.getLogger(__name__)
 
-
 def check_tiff(file_name: str):
     '''
     :param file_name: принимает имя файла
