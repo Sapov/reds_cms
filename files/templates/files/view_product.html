@@ -43,7 +43,7 @@
                         <td></td>
                     {% else %}
 
-                    <td><a href="edit/{{product.id}}">Изменить</a></td>
+                    <td><a href="{% url 'files:edit_file' product.id %}">Изменить</a></td>
                     <td><a href="delete/{{product.id}}">Удалить</a></td>
                       {% endif %}
 

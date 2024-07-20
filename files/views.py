@@ -28,7 +28,7 @@ class ViewFilesUserListView(LoginRequiredMixin, ListView):
         return queryset
 
 
-class UpdateFilesUserUpdateView(LoginRequiredMixin, UpdateView):
+class EditFilesUserUpdateView(LoginRequiredMixin, UpdateView):
     '''Редактирование файла пользователя'''
     model = Product
     fields = ["quantity", "material", "FinishWork"]
