@@ -5,13 +5,26 @@ from django.urls import reverse_lazy
 from django.views.generic import CreateView, UpdateView, DeleteView
 from django.views.generic import ListView
 
-from .models import Product
+from .forms import UploadFilesInter
+from .models import Product, Material
 
 
 class AddFilesUserCreateView(LoginRequiredMixin, CreateView):
     '''Create a new file'''
     model = Product
     fields = ["quantity", "material", "FinishWork", "images", "comments"]
+
+    def form_valid(self, form):
+        form.instance.Contractor = self.request.user
+        return super().form_valid(form)
+
+
+class FilesCreateViewInter(LoginRequiredMixin, CreateView):
+    """Загрузка файлов только для интерьерной печати"""
+
+    model = Product
+    form_class = UploadFilesInter
+    template_name = "files/inter_print.html"
 
     def form_valid(self, form):
         form.instance.Contractor = self.request.user

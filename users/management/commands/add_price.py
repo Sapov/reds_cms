@@ -5,7 +5,6 @@ from files.models import Material, FinishWork, TypePrint, StatusProduct
 # from orders.models import StatusOrder
 from .from_excel import load_excel
 
-
 # ___________________________________________________
 # How import >> python manage.py add_price
 # ___________________________________________________
