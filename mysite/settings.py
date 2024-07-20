@@ -28,6 +28,7 @@ INSTALLED_APPS = [
     'orders',
     'crispy_forms',
     "crispy_bootstrap4",
+    "easy_thumbnails",
 
 ]
 
