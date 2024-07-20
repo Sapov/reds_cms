@@ -9,9 +9,6 @@ from .models import (
     UseCalculator,
 )
 
-# admin.site.register(FinishWork)
-# admin.site.register(TypePrint)
-
 
 class MaterialAdmin(admin.ModelAdmin):
     list_display = [field.name for field in Material._meta.fields]
