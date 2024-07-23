@@ -22,4 +22,6 @@ urlpatterns = [
     path('calculate/', calculator, name='calculator'),
     path('create_files/', calculator, name='create_files'),
 
+
 ]
+
